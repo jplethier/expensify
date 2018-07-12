@@ -19,25 +19,22 @@ const store = createStore((state = { count: 0 }, action) => {
   }
 })
 
-console.log(store.getState());
+const unsubscribe = store.subscribe(() => {
+  console.log(store.getState());
+})
 
 // Actions - than an object that gets sent to the store
 
-// I'd like to increment the count
 store.dispatch({
   type: 'INCREMENT'
 });
 
+unsubscribe()
+
 store.dispatch({
   type: 'INCREMENT'
 });
 
-// I'd like to decrement the count
-store.dispatch({
-  type: 'DECREMENT'
-});
-
-// I'd like to reset the count
 store.dispatch({
   type: 'RESET'
 });
@@ -45,5 +42,3 @@ store.dispatch({
 store.dispatch({
   type: 'DECREMENT'
 });
-
-console.log(store.getState());
